@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+
+    triggers {
+        cron('H 3 * * *') // Runs daily at 3 AM (server time)
+    }
+
+    environment {
+        AWS_DEFAULT_REGION = 'your-region' // e.g., us-east-1
+    }
+
+    stages {
+        stage('Clone Repo') {
+            steps {
+                git branch: 'main', url: 'https://your-git-repo-url.git'
+            }
+        }
+
+        stage('Run Monitor Script') {
+            steps {
+                sh 'chmod +x monitor.sh'
+                sh './monitor.sh'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Monitoring report generated, committed, and uploaded to S3.'
+        }
+        failure {
+            echo 'Something went wrong. Check logs.'
+        }
+    }
+}
+
