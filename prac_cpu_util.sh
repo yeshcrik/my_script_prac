@@ -28,5 +28,5 @@ git commit -m "System report: $REPORT_FILE"
 git push origin main
 
 # Upload to S3 (make sure AWS CLI is configured)
-aws s3 cp "$REPORT_DIR/$REPORT_FILE" s3://myscriptcpuutil/system-reports/
+aws s3 cp "$REPORT_DIR/$REPORT_FILE" s3://myscriptcpuutil.sh/system-reports/
 
