@@ -18,8 +18,8 @@ pipeline {
 
         stage('Run Monitor Script') {
             steps {
-                sh 'chmod +x monitor.sh'
-                sh './monitor.sh'
+                sh 'chmod +x prac_cpu_util.sh'
+                sh './prac_cpu_util.sh'
             }
         }
     }
